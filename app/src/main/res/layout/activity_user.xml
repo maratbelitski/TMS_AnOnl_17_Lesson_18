@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".UserActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_information"
+        app:layout_constraintBottom_toTopOf="@+id/tv_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/password"
+        app:layout_constraintBottom_toTopOf="@+id/tv_login"
+        app:layout_constraintEnd_toStartOf="@+id/tv_new_password"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_information" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toTopOf="@+id/tv_color"
+        app:layout_constraintStart_toStartOf="@+id/tv_password"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/color"
+        app:layout_constraintBottom_toTopOf="@+id/tv_options"
+        app:layout_constraintStart_toStartOf="@+id/tv_login"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/options"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_color"
+        app:layout_constraintTop_toBottomOf="@+id/tv_color" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_new_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        tools:text="123qwer"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_password"
+        app:layout_constraintTop_toTopOf="@+id/tv_password" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_new_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="LoginNN"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_login"
+        app:layout_constraintStart_toStartOf="@+id/tv_new_password"
+        app:layout_constraintTop_toTopOf="@+id/tv_login" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_new_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Blue"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_color"
+        app:layout_constraintStart_toStartOf="@+id/tv_new_login"
+        app:layout_constraintTop_toTopOf="@+id/tv_color" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_option_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        tools:text="First option"
+        app:layout_constraintStart_toStartOf="@+id/tv_options"
+        app:layout_constraintTop_toBottomOf="@+id/tv_options" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_option_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        tools:text="Second option"
+        app:layout_constraintStart_toStartOf="@+id/tv_option_one"
+        app:layout_constraintTop_toBottomOf="@+id/tv_option_one" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_option_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        tools:text="Third option"
+        app:layout_constraintStart_toStartOf="@+id/tv_option_two"
+        app:layout_constraintTop_toBottomOf="@+id/tv_option_two" />
+</androidx.constraintlayout.widget.ConstraintLayout>

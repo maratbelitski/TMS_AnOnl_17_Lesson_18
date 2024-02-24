@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TMS_AnOnl_17_Lesson_18</string>
+    <string name="account_information">Account information:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login:</string>
+    <string name="color">Color:</string>
+    <string name="options">Options:</string>
+    <string name="receive_notifications">Receive notifications</string>
+    <string name="receive_offers">Receive offers</string>
+    <string name="receive_a_newsletter">Receive a newsletter</string>
+    <string name="choose_options">Choose options:</string>
+    <string name="blue">Blue</string>
+    <string name="yellow">Yellow</string>
+    <string name="red">Red</string>
+    <string name="choose_color">Choose color:</string>
+    <string name="your_login">Your login</string>
+    <string name="your_password">Your password</string>
+    <string name="log_in">Log in</string>
+</resources>
