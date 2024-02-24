@@ -2,6 +2,8 @@ package com.example.tms_anonl_17_lesson_18
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.RadioButton
@@ -9,7 +11,10 @@ import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
 
-    //private lateinit var button: Button
+    companion object {
+        const val IS_EMPTY = ""
+    }
+
     private lateinit var password: TextInputEditText
     private lateinit var login: TextInputEditText
     private lateinit var optionOne: CheckBox
@@ -18,6 +23,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var radioOne: RadioButton
     private lateinit var radioTwo: RadioButton
     private lateinit var radioThree: RadioButton
+    private lateinit var logInButton: Button
+    private lateinit var textWatcher: TextWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +32,11 @@ class LoginActivity : AppCompatActivity() {
 
         initViews()
 
-        findViewById<Button>(R.id.button).setOnClickListener {
+
+        login.addTextChangedListener(textWatcher)
+        password.addTextChangedListener(textWatcher)
+
+        logInButton.setOnClickListener {
             val userParam = initUserParam()
             startActivity(UserActivity.launchIntent(this, userParam))
         }
@@ -33,14 +44,17 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initUserParam(): User {
         return User(
-            login = login.text.toString(),
-            password = password.text.toString(),
+            login = login.text.toString().trim(),
+            password = password.text.toString().trim(),
             color = checkColor(),
             options = checkOptions()
         )
     }
 
     private fun initViews() {
+        logInButton = findViewById(R.id.button)
+        logInButton.isEnabled = false
+
         login = findViewById(R.id.id_login)
         password = findViewById(R.id.id_password)
 
@@ -51,6 +65,26 @@ class LoginActivity : AppCompatActivity() {
         optionOne = findViewById(R.id.cb_notif)
         optionTwo = findViewById(R.id.cb_offers)
         optionThree = findViewById(R.id.cb_news)
+
+        textWatcher = object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val log = login.text?.toString()?.trim()
+                val pass = password.text?.toString()?.trim()
+
+                logInButton.isEnabled = log!!.length > 5 && pass!!.length > 5
+
+                if (log.length > 5 && pass!!.length > 5){
+                    logInButton.isEnabled = true
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        }
     }
 
     private fun checkColor(): String {
@@ -58,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
             radioOne.isChecked -> radioOne.text
             radioTwo.isChecked -> radioTwo.text
             radioThree.isChecked -> radioThree.text
-            else -> ""
+            else -> IS_EMPTY
         }
         return result.toString()
     }
@@ -66,26 +100,23 @@ class LoginActivity : AppCompatActivity() {
     private fun checkOptions(): List<String> {
         val result = mutableListOf<String>()
 
-        if(optionOne.isChecked){
+        if (optionOne.isChecked) {
             result.add(optionOne.text.toString())
-        }else{
-            result.add("")
+        } else {
+            result.add(IS_EMPTY)
         }
 
-        if(optionTwo.isChecked){
+        if (optionTwo.isChecked) {
             result.add(optionTwo.text.toString())
-        } else{
-            result.add("")
+        } else {
+            result.add(IS_EMPTY)
         }
 
-        if(optionThree.isChecked){
+        if (optionThree.isChecked) {
             result.add(optionThree.text.toString())
-        }else{
-            result.add("")
+        } else {
+            result.add(IS_EMPTY)
         }
-//        result.add(optionTwo.text.toString())
-//        result.add(optionThree.text.toString())
-
         return result
     }
 }

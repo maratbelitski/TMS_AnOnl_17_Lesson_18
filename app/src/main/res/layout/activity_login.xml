@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@drawable/background_login"
+    android:padding="@dimen/padding_size_normal">
 
     <CheckBox
         android:id="@+id/cb_notif"
+        style="@style/MySecondTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/receive_notifications"
+        android:theme="@style/MyRedButtons"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <CheckBox
         android:id="@+id/cb_offers"
+        style="@style/MySecondTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/receive_offers"
+        android:theme="@style/MyRedButtons"
         app:layout_constraintStart_toStartOf="@+id/cb_notif"
         app:layout_constraintTop_toBottomOf="@+id/cb_notif" />
 
     <CheckBox
         android:id="@+id/cb_news"
+        style="@style/MySecondTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/receive_a_newsletter"
+        android:theme="@style/MyRedButtons"
         app:layout_constraintStart_toStartOf="@+id/cb_offers"
         app:layout_constraintTop_toBottomOf="@+id/cb_offers" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView"
+        style="@style/MyMainTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_options"
+
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,24 +55,28 @@
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/MyRedButtons"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <RadioButton
             android:id="@+id/rb_one"
+            style="@style/MySecondTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/blue" />
+            android:text="@string/white" />
 
         <RadioButton
             android:id="@+id/rb_two"
+            style="@style/MySecondTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/yellow" />
 
         <RadioButton
             android:id="@+id/rb_three"
+            style="@style/MySecondTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/red" />
@@ -73,56 +84,71 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView2"
+        style="@style/MyMainTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_color"
         app:layout_constraintBottom_toTopOf="@+id/cb_notif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:paddingTop="@dimen/padding_size_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/guideline">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id_login"
+            style="@style/MyMainTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/your_login" />
+            android:hint="@string/your_login"
+            android:textAppearance="@style/MyMainTextStyle" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id_password"
+            style="@style/MyMainTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/your_password" />
+            android:hint="@string/your_password"
+            android:inputType="numberPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/padding_size_big"
+        android:background="@drawable/selector_button"
+        android:padding="@dimen/padding_size_big"
         android:text="@string/log_in"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        android:textColor="@color/white_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,10 +18,11 @@ class UserActivity : AppCompatActivity() {
     private lateinit var optionTwo: TextView
     private lateinit var optionThree: TextView
 
-
     companion object {
-
-        const val USER_OBJECT = "user_object"
+        private const val USER_OBJECT = "user_object"
+        private const val RED = "Red"
+        private const val YELLOW = "Yellow"
+        private const val WHITE = "White"
 
         fun launchIntent(context: Context, userParam: User): Intent {
             val intent = Intent(context, UserActivity::class.java)
@@ -30,12 +31,15 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
-        val userParams = intent.getParcelableExtra(USER_OBJECT, User::class.java)
+        val userParams = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(USER_OBJECT, User::class.java)
+        } else {
+            intent.getParcelableExtra(USER_OBJECT)
+        }
 
         initViews()
         changeParamViews(userParams)
@@ -46,23 +50,21 @@ class UserActivity : AppCompatActivity() {
         login.text = userParams?.login
         password.text = userParams?.password
         color.text = userParams?.color
-        optionOne.text = userParams?.options?.get(0).toString()
-        optionTwo.text = userParams?.options?.get(1).toString()
-        optionThree.text = userParams?.options?.get(2).toString()
+        changeColorBackground(color.text.toString())
     }
 
     private fun changeOptionsViews(userParams: User?) {
-        if (userParams?.options?.get(0)?.isBlank() == false){
+        if (userParams?.options?.get(0)?.isBlank() == false) {
             optionOne.visibility = View.VISIBLE
             optionOne.text = userParams.options[0]
         }
 
-        if (userParams?.options?.get(1)?.isBlank() == false){
+        if (userParams?.options?.get(1)?.isBlank() == false) {
             optionTwo.visibility = View.VISIBLE
             optionTwo.text = userParams.options[1]
         }
 
-        if (userParams?.options?.get(2)?.isBlank() == false){
+        if (userParams?.options?.get(2)?.isBlank() == false) {
             optionThree.visibility = View.VISIBLE
             optionThree.text = userParams.options[2]
         }
@@ -75,5 +77,16 @@ class UserActivity : AppCompatActivity() {
         optionOne = findViewById(R.id.tv_option_one)
         optionTwo = findViewById(R.id.tv_option_two)
         optionThree = findViewById(R.id.tv_option_three)
+    }
+
+    private fun changeColorBackground(colorText: String) {
+        when (colorText) {
+            RED -> color.setBackgroundResource(R.drawable.background_tv_color_red)
+            YELLOW -> color.setBackgroundResource(R.drawable.background_tv_color_yellow)
+            WHITE -> {
+                color.setBackgroundResource(R.drawable.background_tv_color_white)
+                color.setTextColor(resources.getColor(R.color.black))
+            }
+        }
     }
 }

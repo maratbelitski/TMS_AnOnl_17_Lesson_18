@@ -1,9 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.TMS_AnOnl_17_Lesson_18" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/black</item>
     </style>
 
     <style name="Theme.TMS_AnOnl_17_Lesson_18" parent="Base.Theme.TMS_AnOnl_17_Lesson_18" />
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/white_hint</item>
+        <item name="cursorColor">@color/red</item>
+        <item name="boxStrokeColor">@color/red</item>
+        <item name="hintTextColor">@color/white</item>
+<!--        <item name="errorEnabled">true</item>-->
+    </style>
+
+    <style name="MyRedButtons" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <style name="MyMainTextStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="android:padding">@dimen/padding_size_normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MySecondTextStyle" parent="MyMainTextStyle">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">italic</item>
+
+    </style>
 </resources>
