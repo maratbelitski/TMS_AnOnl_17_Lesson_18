@@ -17,4 +17,5 @@
     <string name="your_login">Your login</string>
     <string name="your_password">Your password</string>
     <string name="log_in">Log in</string>
+    <string name="error_message">Need minimum 6 symbols</string>
 </resources>

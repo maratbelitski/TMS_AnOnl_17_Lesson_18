@@ -1,13 +1,15 @@
 package com.example.tms_anonl_17_lesson_18
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var password: TextInputEditText
     private lateinit var login: TextInputEditText
+    private lateinit var textInputLayoutOne: TextInputLayout
+    private lateinit var textInputLayoutTwo: TextInputLayout
     private lateinit var optionOne: CheckBox
     private lateinit var optionTwo: CheckBox
     private lateinit var optionThree: CheckBox
@@ -31,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         initViews()
-
 
         login.addTextChangedListener(textWatcher)
         password.addTextChangedListener(textWatcher)
@@ -55,6 +58,9 @@ class LoginActivity : AppCompatActivity() {
         logInButton = findViewById(R.id.button)
         logInButton.isEnabled = false
 
+        textInputLayoutOne = findViewById(R.id.textInputLayout)
+        textInputLayoutTwo = findViewById(R.id.textInputLayout2)
+
         login = findViewById(R.id.id_login)
         password = findViewById(R.id.id_password)
 
@@ -72,14 +78,8 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val log = login.text?.toString()?.trim()
-                val pass = password.text?.toString()?.trim()
-
-                logInButton.isEnabled = log!!.length > 5 && pass!!.length > 5
-
-                if (log.length > 5 && pass!!.length > 5){
-                    logInButton.isEnabled = true
-                }
+                validationEnable()
+                validationError()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -118,5 +118,44 @@ class LoginActivity : AppCompatActivity() {
             result.add(IS_EMPTY)
         }
         return result
+    }
+
+    private fun validationEnable() {
+        val log = login.text?.toString()?.trim()
+        val pass = password.text?.toString()?.trim()
+
+        logInButton.isEnabled = log!!.length > 5 && pass!!.length > 5
+
+        if (log.length > 5 && pass!!.length > 5) {
+            logInButton.isEnabled = true
+            logInButton.setTextColor(resources.getColor(R.color.white))
+
+        } else {
+            logInButton.isEnabled = false
+            logInButton.setTextColor(resources.getColor(R.color.white_hint))
+        }
+    }
+
+    private fun validationError() {
+        val log = login.text?.toString()?.trim()
+        val pass = password.text?.toString()?.trim()
+
+        if (log != null) {
+            if (log.length > 5) {
+                textInputLayoutOne.isErrorEnabled = false
+            } else {
+                textInputLayoutOne.isErrorEnabled = true
+                textInputLayoutOne.error = resources.getString(R.string.error_message)
+            }
+        }
+
+        if (pass != null) {
+            if ( pass.length > 5) {
+                textInputLayoutTwo.isErrorEnabled = false
+            } else {
+                textInputLayoutTwo.isErrorEnabled = true
+                textInputLayoutTwo.error = resources.getString(R.string.error_message)
+            }
+        }
     }
 }

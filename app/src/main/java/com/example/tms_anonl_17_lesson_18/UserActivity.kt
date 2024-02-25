@@ -3,11 +3,10 @@ package com.example.tms_anonl_17_lesson_18
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 
 class UserActivity : AppCompatActivity() {
 
@@ -35,15 +34,19 @@ class UserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
+        val userParams = parceIntent()
+        initViews()
+        changeParamViews(userParams)
+        changeOptionsViews(userParams)
+    }
+
+    private fun parceIntent(): User? {
         val userParams = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(USER_OBJECT, User::class.java)
         } else {
             intent.getParcelableExtra(USER_OBJECT)
         }
-
-        initViews()
-        changeParamViews(userParams)
-        changeOptionsViews(userParams)
+        return userParams
     }
 
     private fun changeParamViews(userParams: User?) {

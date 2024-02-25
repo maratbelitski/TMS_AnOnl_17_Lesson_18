@@ -10,8 +10,13 @@
         <item name="android:textColorHint">@color/white_hint</item>
         <item name="cursorColor">@color/red</item>
         <item name="boxStrokeColor">@color/red</item>
+        <item name="boxStrokeWidthFocused">3dp</item>
         <item name="hintTextColor">@color/white</item>
-<!--        <item name="errorEnabled">true</item>-->
+
+        <item name="boxStrokeErrorColor">@color/orange</item>
+        <item name="errorTextColor">@color/white</item>
+        <item name="errorIconTint">@color/orange</item>
+
     </style>
 
     <style name="MyRedButtons" parent="Widget.Material3.CompoundButton.RadioButton">
