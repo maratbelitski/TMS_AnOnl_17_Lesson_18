@@ -35,6 +35,7 @@ class UserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user)
 
         val userParams = parceIntent()
+
         initViews()
         changeParamViews(userParams)
         changeOptionsViews(userParams)
@@ -57,6 +58,7 @@ class UserActivity : AppCompatActivity() {
     }
 
     private fun changeOptionsViews(userParams: User?) {
+
         if (userParams?.options?.get(0)?.isBlank() == false) {
             optionOne.visibility = View.VISIBLE
             optionOne.text = userParams.options[0]

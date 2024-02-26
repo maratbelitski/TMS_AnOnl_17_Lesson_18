@@ -9,7 +9,6 @@ import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
 
@@ -35,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         initViews()
-
         login.addTextChangedListener(textWatcher)
         password.addTextChangedListener(textWatcher)
 
@@ -45,18 +43,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initUserParam(): User {
-        return User(
-            login = login.text.toString().trim(),
-            password = password.text.toString().trim(),
-            color = checkColor(),
-            options = checkOptions()
-        )
-    }
-
     private fun initViews() {
         logInButton = findViewById(R.id.button)
-        logInButton.isEnabled = false
 
         textInputLayoutOne = findViewById(R.id.textInputLayout)
         textInputLayoutTwo = findViewById(R.id.textInputLayout2)
@@ -74,17 +62,24 @@ class LoginActivity : AppCompatActivity() {
 
         textWatcher = object : TextWatcher {
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 validationEnable()
                 validationError()
             }
 
-            override fun afterTextChanged(s: Editable?) {
-            }
+            override fun afterTextChanged(s: Editable?) {}
         }
+    }
+
+    private fun initUserParam(): User {
+        return User(
+            login = login.text.toString().trim(),
+            password = password.text.toString().trim(),
+            color = checkColor(),
+            options = checkOptions()
+        )
     }
 
     private fun checkColor(): String {
@@ -121,40 +116,35 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validationEnable() {
-        val log = login.text?.toString()?.trim()
-        val pass = password.text?.toString()?.trim()
+        val logText = login.text?.toString()?.trim()
+        val passText = password.text?.toString()?.trim()
 
-        logInButton.isEnabled = log!!.length > 5 && pass!!.length > 5
+        logInButton.isEnabled = logText!!.length > 5 && passText!!.length > 5
 
-        if (log.length > 5 && pass!!.length > 5) {
+        if (logText.length > 5 && passText!!.length > 5) {
             logInButton.isEnabled = true
-            logInButton.setTextColor(resources.getColor(R.color.white))
-
-        } else {
-            logInButton.isEnabled = false
-            logInButton.setTextColor(resources.getColor(R.color.white_hint))
         }
     }
 
     private fun validationError() {
-        val log = login.text?.toString()?.trim()
-        val pass = password.text?.toString()?.trim()
+        val logText = login.text?.toString()?.trim()
+        val passText = password.text?.toString()?.trim()
 
-        if (log != null) {
-            if (log.length > 5) {
-                textInputLayoutOne.isErrorEnabled = false
-            } else {
+        if (logText != null) {
+            if (logText.length < 5 && !login.isFocused) {
                 textInputLayoutOne.isErrorEnabled = true
                 textInputLayoutOne.error = resources.getString(R.string.error_message)
+            } else {
+                textInputLayoutOne.isErrorEnabled = false
             }
         }
 
-        if (pass != null) {
-            if ( pass.length > 5) {
-                textInputLayoutTwo.isErrorEnabled = false
-            } else {
+        if (passText != null) {
+            if (passText.length < 5 && !password.isFocused) {
                 textInputLayoutTwo.isErrorEnabled = true
                 textInputLayoutTwo.error = resources.getString(R.string.error_message)
+            } else {
+                textInputLayoutTwo.isErrorEnabled = false
             }
         }
     }
